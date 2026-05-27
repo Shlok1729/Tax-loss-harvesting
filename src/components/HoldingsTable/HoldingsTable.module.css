@@ -1,0 +1,301 @@
+.holdingsSection {
+  margin-top: 0.5rem;
+}
+
+.holdingsTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.tableWrapper {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+/* ── Header ── */
+.table thead {
+  background: var(--table-header-bg);
+}
+
+.table thead th {
+  padding: 0.85rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.table thead th:first-child {
+  width: 50px;
+  text-align: center;
+}
+
+/* Right-align numeric columns */
+.table thead th:nth-child(4),
+.table thead th:nth-child(5),
+.table thead th:nth-child(6),
+.table thead th:nth-child(7) {
+  text-align: right;
+}
+
+/* ── Body ── */
+.table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.15s ease;
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--row-hover);
+}
+
+.selectedRow {
+  background: var(--row-selected) !important;
+}
+
+.table tbody td {
+  padding: 0.85rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.table tbody td:first-child {
+  text-align: center;
+}
+
+/* Right-align numeric columns */
+.table tbody td:nth-child(4),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6),
+.table tbody td:nth-child(7) {
+  text-align: right;
+}
+
+/* ── Checkbox ── */
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+/* ── Asset Cell ── */
+.assetCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.coinLogo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--logo-bg);
+  flex-shrink: 0;
+}
+
+.coinInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.coinName {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.coinTicker {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ── Holdings Cell ── */
+.holdingAmount {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.holdingAvgPrice {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+/* ── Gain Cells ── */
+.gainPositive {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.gainNegative {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.gainZero {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.gainBalance {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 0.1rem;
+}
+
+/* ── Amount to Sell ── */
+.amountToSell {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.amountDash {
+  color: var(--text-muted);
+}
+
+/* ── Subtitle row ── */
+.subText {
+  display: block;
+}
+
+/* ── Column header sub ── */
+.thSub {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+/* ── Loading ── */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ── Error ── */
+.errorContainer {
+  padding: 2rem;
+  text-align: center;
+  color: #ef4444;
+  font-size: 0.9rem;
+}
+
+/* ── View All ── */
+.viewAllContainer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--card-bg);
+}
+
+.viewAllLink {
+  color: #3b82f6;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .holdingsTitle {
+    font-size: 1.1rem;
+  }
+
+  .coinName {
+    max-width: 120px;
+    font-size: 0.8rem;
+  }
+  
+  .table tbody td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .table thead th {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .holdingAmount, .amountToSell {
+    font-size: 0.8rem;
+  }
+  
+  .coinLogo {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .table {
+    min-width: 100%;
+  }
+
+  .table thead th:nth-child(n+4),
+  .table tbody td:nth-child(n+4) {
+    display: none;
+  }
+}

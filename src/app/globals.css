@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── CSS Custom Properties ── */
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ── Dark Theme (Default) ── */
+[data-theme="dark"] {
+  --bg-primary: #0d0d11;
+  --bg-secondary: #13131a;
+  --card-bg: #1a1a26;
+  --card-bg-hover: #22222e;
+  --table-header-bg: #15151f;
+  --border-color: #2a2a3a;
+  --border-color-hover: #3a3a4a;
+  --text-primary: #f0f0f5;
+  --text-secondary: #b0b0c0;
+  --text-muted: #707085;
+  --row-hover: rgba(59, 130, 246, 0.05);
+  --row-selected: rgba(59, 130, 246, 0.1);
+  --logo-bg: #2a2a3a;
+  --scrollbar-track: #1a1a26;
+  --scrollbar-thumb: #3a3a4a;
+  --header-bg: #111119;
+  --header-border: #1f1f2e;
+}
+
+/* ── Light Theme ── */
+[data-theme="light"] {
+  --bg-primary: #f8f9fc;
+  --bg-secondary: #ffffff;
+  --card-bg: #ffffff;
+  --card-bg-hover: #f3f4f6;
+  --table-header-bg: #f9fafb;
+  --border-color: #e5e7eb;
+  --border-color-hover: #d1d5db;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --row-hover: rgba(59, 130, 246, 0.04);
+  --row-selected: rgba(59, 130, 246, 0.08);
+  --logo-bg: #f3f4f6;
+  --scrollbar-track: #f3f4f6;
+  --scrollbar-thumb: #d1d5db;
+  --header-bg: #ffffff;
+  --header-border: #e5e7eb;
+}
+
+/* ── Global Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.5;
+}
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Dashboard Container ── */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem;
+}
+
+/* ── Page Header ── */
+.page-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.how-it-works-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.how-it-works {
+  color: #3b82f6;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.how-it-works:hover {
+  color: #60a5fa;
+}
+
+.how-it-works-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  background-color: #ffffff;
+  color: #111827;
+  text-align: left;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transition: opacity 0.2s, visibility 0.2s;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .how-it-works-tooltip {
+  background-color: #ffffff; /* keep white as in screenshot */
+  color: #111827;
+}
+
+[data-theme="light"] .how-it-works-tooltip {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+/* Caret pointing up */
+.how-it-works-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+[data-theme="light"] .how-it-works-tooltip::before {
+  border-color: transparent transparent #1f2937 transparent;
+}
+
+.how-it-works-wrapper:hover .how-it-works-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.how-it-works-tooltip ul {
+  margin: 0 0 0.75rem 0;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.how-it-works-tooltip li {
+  font-size: 0.875rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.how-it-works-tooltip p {
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Generic Tooltip ── */
+.has-tooltip {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.2s;
+}
+
+.has-tooltip:hover {
+  border-bottom-color: var(--text-muted);
+}
+
+.has-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+  pointer-events: none;
+}
+
+[data-theme="light"] .has-tooltip::after {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .has-tooltip::after {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.has-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 2px;
+  border-width: 6px;
+  border-style: solid;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+  pointer-events: none;
+}
+
+[data-theme="light"] .has-tooltip::before {
+  border-color: #1f2937 transparent transparent transparent;
+}
+
+[data-theme="dark"] .has-tooltip::before {
+  border-color: #ffffff transparent transparent transparent;
+}
+
+.has-tooltip:hover::after,
+.has-tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Loading Shimmer for Cards ── */
+.cards-loading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cards-loading-shimmer {
+  height: 260px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-loading-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+[data-theme="light"] .cards-loading-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.04) 50%,
+    transparent 100%
+  );
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--text-primary);
+}
+
+/* ── Focus Visible ── */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .page-title {
+    font-size: 1.25rem;
+  }
+
+  .page-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cards-loading {
+    grid-template-columns: 1fr;
+  }
+  
+  .how-it-works-tooltip {
+    width: 300px;
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+  }
+  
+  .how-it-works-tooltip::before {
+    left: auto;
+    right: 15%;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 1rem 0.5rem 2rem;
+  }
+  
+  .page-title {
+    font-size: 1.15rem;
+  }
+}
